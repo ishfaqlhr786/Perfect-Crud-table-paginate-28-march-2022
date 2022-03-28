@@ -49,6 +49,20 @@ export const Pagination = ({showPerPage,onPageChange,total,limit,start,items,end
       // onPageChange(0,limit)
      
     },[limit,showPerPage,start])
+    const fetchDataDefault=async()=>{
+      const res = await axios.get(
+        `https://fakestoreapi.com/products`
+      )
+      console.log(res.data)
+      setCurrentItems([...res.data.slice(start, end)])
+    }
+    useEffect(()=>{
+     // setCurrentItems([...items.slice(start, end)])
+     fetchDataDefault()
+     //setCouter(1)
+    // onPageChange(0,limit)
+   
+  },[])
    
     useEffect(()=>{
         console.log("limit is",limit)
@@ -297,26 +311,36 @@ const  handleEditFormSubmit=async(e)=>{
     return (
         <div>
              <form >
-                       
-                       <label className="custom-control-label">Search by id</label>
+                       <table><tr><td>
+                       <label className="custom-control-label">Search by id</label></td>
+                       <td>
                        <input type="number" 
                        className="form-control" name="searchId" onChange={(e)=>setSearchId(e.target.value)}
                        value={searchId} />
+                       </td>
+                       <td>
                        <button 
                        className="btn btn-md btn-warning" 
                        onClick={(e)=>handleSearch(e,searchId)}><i className="fa fa-search-plus" 
                        style={{fontSize:"20px"}}
                        aria-hidden="true"></i></button>
-                       <br/>
-                       <label className="custom-control-label">Search by Cateegory</label>
+                       </td>
+                       </tr>
+                       <tr>
+                         <td> <label className="custom-control-label">Search by Cateegory</label></td>
+                         <td>
                        <input type="text" 
                         className="form-control"
-                       value={category} onChange={(e)=>setCategory(e.target.value)}/>
+                       value={category} onChange={(e)=>setCategory(e.target.value)}/></td>
+                       <td>
                        <button 
                        className="btn btn-md btn-warning"
                        onClick={(e)=>handleSearchByName(e,category)}><i className="fa fa-search-plus" 
                        style={{fontSize:"20px"}}
                        aria-hidden="true"></i></button>
+                       </td>
+                       </tr>
+                       </table>
                      </form>
             <span>
                   

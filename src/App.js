@@ -5,7 +5,7 @@ import {Home}  from './components/Home'
 export const App = () => {
  // const {histrory}=useHistory()
   return (
-    <div>
+    <div style={{backgroundColor:"pink"}}>
         <Router>
       <ul>
         <li>

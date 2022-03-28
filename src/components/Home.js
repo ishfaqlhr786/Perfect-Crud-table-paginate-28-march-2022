@@ -96,7 +96,7 @@ const changeUrl=()=>{
 
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor:"pink"}}>
     
       
       <span><h4>change records on one page</h4></span>
